@@ -1,0 +1,51 @@
+Venta/ID,Nombre (Producto),Categoría,Cantidad vendida,Precio total de venta,fecha
+VEN-001,Notebook Gamer Nitro 5,Tecnología,1,850000,2026-01-01 00:00:00
+VEN-002,Mouse Inalámbrico Ergo,Tecnología,2,50000,2026-01-05 08:15:30
+VEN-003,Polera Básica Algodón,Vestuario,5,60000,2026-01-10 12:45:00
+VEN-004,Silla Oficina Ergonómica,Hogar,1,120000,2026-01-15 18:30:15
+VEN-005,Smartphone Galaxy S24,Tecnología,1,990000,2026-01-20 23:59:59
+VEN-006,Calcetines Pack x3,Vestuario,10,50000,2026-02-01 06:20:10
+VEN-007,Teclado Mecánico RGB,Tecnología,1,55000,2026-02-05 14:10:05
+VEN-008,Hervidor Eléctrico 1.7L,Hogar,2,50000,2026-02-10 19:55:45
+VEN-009,Jean Slim Fit Azul,Vestuario,2,50000,2026-02-14 21:30:00
+VEN-010,"Monitor 27"" Curvo",Tecnología,1,180000,2026-02-20 09:05:25
+VEN-011,Lámpara de Escritorio LED,Hogar,3,105000,2026-03-01 11:11:11
+VEN-012,Audífonos Noise Cancelling,Tecnología,1,150000,2026-03-05 07:45:00
+VEN-013,Polerón con Capucha,Vestuario,1,30000,2026-03-10 16:20:35
+VEN-014,Microondas Digital,Hogar,1,95000,2026-03-15 20:40:50
+VEN-015,Mousepad XL,Tecnología,4,60000,2026-03-20 13:25:15
+VEN-016,Zapatillas Urbanas,Vestuario,1,45000,2026-04-01 05:00:00
+VEN-017,Set de Sartenes (3 piezas),Hogar,1,40000,2026-04-05 17:35:20
+VEN-018,Reloj Inteligente (Sport),Tecnología,2,240000,2026-04-10 22:10:10
+VEN-019,Gorra Deportiva,Vestuario,3,30000,2026-04-15 10:50:45
+VEN-020,Alfombra Decorativa,Hogar,1,45000,2026-04-20 15:15:15
+VEN-021,Notebook Gamer Nitro 5,Tecnología,1,850000,2026-05-01 03:30:30
+VEN-022,Camisa de Lino Blanca,Vestuario,2,70000,2026-05-05 12:00:00
+VEN-023,Licuadora de Alta Potencia,Hogar,1,75000,2026-05-10 18:45:45
+VEN-024,Cable HDMI 2.1,Tecnología,5,60000,2026-05-15 23:20:10
+VEN-025,Pantalón Cargo Negro,Vestuario,1,28000,2026-05-20 08:55:55
+VEN-026,Aspiradora Robot,Hogar,1,280000,2026-06-01 06:06:06
+VEN-027,Router Mesh WiFi 6,Tecnología,1,110000,2026-06-05 14:14:14
+VEN-028,Chaqueta Impermeable,Vestuario,1,55000,2026-06-10 21:21:21
+VEN-029,Cojín Terciopelo,Hogar,4,40000,2026-06-15 09:09:09
+VEN-030,Disco Duro Externo 2TB,Tecnología,2,130000,2026-06-20 16:16:16
+VEN-031,Polera Básica Algodón,Vestuario,3,36000,2026-07-01 00:10:10
+VEN-032,Estante de Libros Negro,Hogar,1,60000,2026-07-05 11:22:33
+VEN-033,Powerbank 20000mAh,Tecnología,2,70000,2026-07-10 13:37:00
+VEN-034,Cinturón Cuero Café,Vestuario,1,15000,2026-07-15 19:19:19
+VEN-035,Sofá 3 Cuerpos Gris,Hogar,1,450000,2026-07-20 22:22:22
+VEN-036,"Tablet 10"" Pro",Tecnología,1,320000,2026-08-01 04:44:44
+VEN-037,Shorts Deportivos,Vestuario,4,60000,2026-08-05 15:55:55
+VEN-038,Mueble para TV,Hogar,1,135000,2026-08-10 20:20:20
+VEN-039,Parlante Bluetooth,Tecnología,1,50000,2026-08-15 07:07:07
+VEN-040,Blazer Formal Negro,Vestuario,1,65000,2026-08-20 12:12:12
+VEN-041,Espejo de Pared,Hogar,1,45000,2026-09-01 09:30:00
+VEN-042,Cámara Web 4K,Tecnología,1,85000,2026-09-05 18:18:18
+VEN-043,Vestido Estampado,Vestuario,1,38000,2026-09-10 23:23:23
+VEN-044,Cuadro Decorativo,Hogar,2,50000,2026-09-15 02:02:02
+VEN-045,Micrófono Podcast,Tecnología,1,95000,2026-09-20 17:17:17
+VEN-046,Chaleco Lana,Vestuario,1,32000,2026-10-01 10:10:10
+VEN-047,Cortinas Blackout,Hogar,2,60000,2026-10-05 21:45:30
+VEN-048,Soporte para Monitor,Tecnología,1,40000,2026-10-10 08:08:08
+VEN-049,Falda Plisada,Vestuario,1,22000,2026-10-15 14:14:14
+VEN-050,Escritorio Madera Roble,Hogar,1,210000,2026-10-20 19:59:59

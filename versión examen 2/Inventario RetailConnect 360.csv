@@ -1,0 +1,51 @@
+Código/ID,Nombre,Categoría,Cantidad disponible,Precio unitario
+PROD-001,Notebook Gamer Nitro 5,Tecnología,15,850000
+PROD-002,Mouse Inalámbrico Ergo,Tecnología,45,25000
+PROD-003,"Monitor 27"" Curvo",Tecnología,10,180000
+PROD-004,Silla Oficina Ergonómica,Hogar,20,120000
+PROD-005,Teclado Mecánico RGB,Tecnología,30,55000
+PROD-006,Smartphone Galaxy S24,Tecnología,12,990000
+PROD-007,Audífonos Noise Cancelling,Tecnología,25,150000
+PROD-008,Impresora Multifuncional,Tecnología,8,130000
+PROD-009,Disco Duro Externo 2TB,Tecnología,50,65000
+PROD-010,Router Mesh WiFi 6,Tecnología,15,110000
+PROD-011,Lámpara de Escritorio LED,Hogar,40,35000
+PROD-012,Sofá 3 Cuerpos Gris,Hogar,5,450000
+PROD-013,Mesa de Centro Madera,Hogar,10,850000
+PROD-014,Estante de Libros Negro,Hogar,15,60000
+PROD-015,Alfombra Decorativa,Hogar,22,45000
+PROD-016,Aspiradora Robot,Hogar,7,280000
+PROD-017,Microondas Digital,Hogar,14,95000
+PROD-018,Hervidor Eléctrico 1.7L,Hogar,30,25000
+PROD-019,Licuadora de Alta Potencia,Hogar,18,75000
+PROD-020,Set de Sartenes (3 piezas),Hogar,25,40000
+PROD-021,Polera Básica Algodón,Vestuario,100,12000
+PROD-022,Jean Slim Fit Azul,Vestuario,60,25000
+PROD-023,Polerón con Capucha,Vestuario,45,30000
+PROD-024,Chaqueta Impermeable,Vestuario,20,55000
+PROD-025,Zapatillas Urbanas,Vestuario,35,45000
+PROD-026,Pantalón Cargo Negro,Vestuario,40,28000
+PROD-027,Camisa de Lino Blanca,Vestuario,30,35000
+PROD-028,Calcetines Pack x3,Vestuario,150,5000
+PROD-029,Cinturón Cuero Café,Vestuario,50,15000
+PROD-030,Gorra Deportiva,Vestuario,80,10000
+PROD-031,"Tablet 10"" Pro",Tecnología,14,320000
+PROD-032,Cámara Web 4K,Tecnología,20,85000
+PROD-033,Soporte para Monitor,Tecnología,35,40000
+PROD-034,Mousepad XL,Tecnología,60,15000
+PROD-035,Cable HDMI 2.1,Tecnología,100,12000
+PROD-036,Mueble para TV,Hogar,6,135000
+PROD-037,Cuadro Decorativo,Hogar,20,25000
+PROD-038,Espejo de Pared,Hogar,12,45000
+PROD-039,Cortinas Blackout,Hogar,40,30000
+PROD-040,Cojín Terciopelo,Hogar,55,10000
+PROD-041,Vestido Estampado,Vestuario,25,38000
+PROD-042,Falda Plisada,Vestuario,18,22000
+PROD-043,Blazer Formal Negro,Vestuario,15,65000
+PROD-044,Shorts Deportivos,Vestuario,50,15000
+PROD-045,Chaleco Lana,Vestuario,22,32000
+PROD-046,Powerbank 20000mAh,Tecnología,40,35000
+PROD-047,Parlante Bluetooth,Tecnología,30,50000
+PROD-048,Micrófono Podcast,Tecnología,10,95000
+PROD-049,Reloj Inteligente (Sport),Tecnología,18,120000
+PROD-050,Escritorio Madera Roble,Hogar,5,210000
