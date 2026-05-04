@@ -1,10 +1,14 @@
-CREATE TABLE inacap.ventas (
-    id_venta              serial PRIMARY KEY,
-    nombre_producto       VARCHAR(100)   NOT NULL,
-    categoria             VARCHAR(50)    NOT NULL,
-    cantidad_vendida      INT UNSIGNED   NOT NULL,
-    precio_total_venta    DECIMAL(12, 2) NOT NULL,
-    fecha                 DATETIME       NOT NULL
+create table inacap_2.ventas
+(
+    id_venta           bigint unsigned auto_increment
+        primary key,
+    nombre_producto    varchar(100)   not null,
+    categoria          varchar(50)    not null,
+    cantidad_vendida   int unsigned   not null,
+    precio_total_venta decimal(12, 2) not null,
+    fecha              datetime       not null,
+    constraint id_venta
+        unique (id_venta)
 );
 
 CREATE TABLE inacap.inventario (
@@ -14,6 +18,8 @@ CREATE TABLE inacap.inventario (
     cantidad_disponible   INT UNSIGNED   NOT NULL,
     precio_unitario       DECIMAL(12, 2) NOT NULL
 );
+
+
 
 create table inacap_2.categorias (
     id_categoria serial primary key,

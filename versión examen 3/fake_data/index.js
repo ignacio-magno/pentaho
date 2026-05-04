@@ -76,13 +76,13 @@ async function seedInventario(pool, config) {
 
 // ── Ventas ────────────────────────────────────────────────────────────────────
 
-function buildVentasRows(itemCount, productos) {
+function buildVentasRows(itemCount, productos, fromDate) {
 	const rows = [];
 	for (let i = 0; i < itemCount; i += 1) {
 		const producto = faker.helpers.arrayElement(productos);
 		const cantidad = faker.number.int({ min: 1, max: 10 });
 		const precioTotal = Number((cantidad * producto.precio_unitario).toFixed(2));
-		const fecha = faker.date.between({ from: config.fromDate, to: new Date() });
+		const fecha = faker.date.between({ from: fromDate, to: new Date() });
 		rows.push([
 			producto.nombre,
 			producto.categoria,
@@ -100,7 +100,7 @@ async function seedVentas(pool, config) {
 	);
 	if (productos.length === 0) throw new Error("La tabla inacap_2.inventario está vacía. Ejecuta seed inventario primero.");
 
-	const rows = buildVentasRows(config.itemCount, productos);
+	const rows = buildVentasRows(config.itemCount, productos, config.fromDate);
 	const [result] = await pool.query(
 		"INSERT INTO inacap_2.ventas (nombre_producto, categoria, cantidad_vendida, precio_total_venta, fecha) VALUES ?",
 		[rows]
