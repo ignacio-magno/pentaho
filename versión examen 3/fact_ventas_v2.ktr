@@ -441,7 +441,7 @@
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>inacap</database>
+    <database>inacap_2</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted 2be98afc86aa7f2e48a1da379d0c2ff8d</password>
@@ -501,43 +501,8 @@
   </connection>
   <order>
     <hop>
-      <from>Inventario</from>
-      <to>Merge join</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Merge join</from>
       <to>total_ventas</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>total_ventas</from>
-      <to>ventas_x_producto</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>dim_producto_input</from>
-      <to>ventas_x_producto</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ventas_x_producto</from>
-      <to>ventas_x_fecha_x_producto</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>dim_fecha_input</from>
-      <to>ventas_x_fecha_x_producto</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ventas</from>
-      <to>ventas_select</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ventas_select</from>
-      <to>Merge join</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -545,103 +510,72 @@
       <to>fact_ventas</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>ventas</from>
+      <to>ventas_select</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>inventario</from>
+      <to>Sort rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows</from>
+      <to>Merge join</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ventas_select</from>
+      <to>Sort rows 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows 2</from>
+      <to>Merge join</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ventas_x_producto</from>
+      <to>Sort rows 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows 3</from>
+      <to>ventas_x_fecha_x_producto</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>dim_fecha_input</from>
+      <to>Sort rows 4</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows 4</from>
+      <to>ventas_x_fecha_x_producto</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>total_ventas</from>
+      <to>sort_ventas</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>sort_ventas</from>
+      <to>ventas_x_producto</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>dim_producto_input</from>
+      <to>Sort codigoid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort codigoid</from>
+      <to>ventas_x_producto</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
-  <step>
-    <name>Inventario</name>
-    <type>CsvInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <filename>C:\Users\laste\Downloads\Inventario RetailConnect 360.csv</filename>
-    <filename_field/>
-    <rownum_field/>
-    <include_filename>N</include_filename>
-    <separator>,</separator>
-    <enclosure>"</enclosure>
-    <header>Y</header>
-    <buffer_size>50000</buffer_size>
-    <lazy_conversion>Y</lazy_conversion>
-    <add_filename_result>N</add_filename_result>
-    <parallel>N</parallel>
-    <newline_possible>N</newline_possible>
-    <format>mixed</format>
-    <encoding/>
-    <fields>
-      <field>
-        <name>Código/ID</name>
-        <type>String</type>
-        <format/>
-        <currency>¤</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>8</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>Nombre</name>
-        <type>String</type>
-        <format/>
-        <currency>¤</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>26</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>Categoría</name>
-        <type>String</type>
-        <format/>
-        <currency>¤</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>10</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>Cantidad disponible</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>¤</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>Precio unitario</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>¤</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>144</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>Merge join</name>
     <type>MergeJoin</type>
@@ -654,13 +588,13 @@
       <schema_name/>
     </partitioning>
     <join_type>INNER</join_type>
-    <step1>ventas_select</step1>
-    <step2>Inventario</step2>
+    <step1>Sort rows 2</step1>
+    <step2>Sort rows</step2>
     <keys_1>
-      <key>Nombre (Producto)</key>
+      <key>nombre_producto</key>
     </keys_1>
     <keys_2>
-      <key>Nombre</key>
+      <key>nombre</key>
     </keys_2>
     <attributes/>
     <cluster_schema/>
@@ -671,115 +605,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>528</xloc>
       <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Ventas</name>
-    <type>CsvInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <filename>C:\Users\laste\Downloads\Ventas RetailConnect 360.csv</filename>
-    <filename_field/>
-    <rownum_field/>
-    <include_filename>N</include_filename>
-    <separator>,</separator>
-    <enclosure>"</enclosure>
-    <header>Y</header>
-    <buffer_size>50000</buffer_size>
-    <lazy_conversion>Y</lazy_conversion>
-    <add_filename_result>N</add_filename_result>
-    <parallel>N</parallel>
-    <newline_possible>N</newline_possible>
-    <format>mixed</format>
-    <encoding/>
-    <fields>
-      <field>
-        <name>Venta/ID</name>
-        <type>String</type>
-        <format/>
-        <currency>¤</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>7</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>Nombre (Producto)</name>
-        <type>String</type>
-        <format/>
-        <currency>¤</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>26</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>Categoría</name>
-        <type>String</type>
-        <format/>
-        <currency>¤</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>10</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>Cantidad vendida</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>¤</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>Precio total de venta</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>¤</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>fecha</name>
-        <type>Date</type>
-        <format>yyyy-MM-dd HH:mm:ss</format>
-        <currency>¤</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>144</xloc>
-      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -795,10 +622,7 @@
       <schema_name/>
     </partitioning>
     <connection>local</connection>
-    <sql>SELECT DATE_FORMAT(fecha, '%Y-%m-%d %H:%i:%s') AS fecha
-, dia, mes, año, id_fecha
-
- FROM dim_fecha WHERE true</sql>
+    <sql>SELECT dia, mes, año, id_fecha FROM dim_fecha WHERE true</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -807,16 +631,16 @@
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
       <value-meta>
-        <type>BigNumber</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
-        <name>id_fecha</name>
-        <length>16</length>
-        <precision>0</precision>
+        <name>fecha</name>
+        <length>24</length>
+        <precision>-1</precision>
         <origin>dim_fecha_input</origin>
-        <comments>id_fecha</comments>
-        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol/>
+        <comments>fecha</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
         <trim_type>none</trim_type>
         <case_insensitive>N</case_insensitive>
@@ -898,6 +722,29 @@
         <date_format_timezone>America/Santiago</date_format_timezone>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>id_fecha</name>
+        <length>16</length>
+        <precision>0</precision>
+        <origin>dim_fecha_input</origin>
+        <comments>id_fecha</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
     </row-meta>
     <attributes/>
     <cluster_schema/>
@@ -908,7 +755,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
+      <xloc>784</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
@@ -932,7 +779,54 @@
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta/>
+    <row-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>id_producto</name>
+        <length>50</length>
+        <precision>-1</precision>
+        <origin>dim_producto_input</origin>
+        <comments>id_producto</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>nombre_producto</name>
+        <length>50</length>
+        <precision>-1</precision>
+        <origin>dim_producto_input</origin>
+        <comments>nombre_producto</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -942,7 +836,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
+      <xloc>640</xloc>
       <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
@@ -959,7 +853,7 @@
       <schema_name/>
     </partitioning>
     <connection>local</connection>
-    <schema>inacap</schema>
+    <schema>inacap_2</schema>
     <table>fact_ventas</table>
     <commit>1000</commit>
     <truncate>N</truncate>
@@ -978,23 +872,19 @@
     <fields>
       <field>
         <column_name>Venta/ID</column_name>
-        <stream_name>Venta/ID</stream_name>
-      </field>
-      <field>
-        <column_name>Nombre (Producto)</column_name>
-        <stream_name>Nombre (Producto)</stream_name>
+        <stream_name>id_venta</stream_name>
       </field>
       <field>
         <column_name>Categoría</column_name>
-        <stream_name>Categoría</stream_name>
+        <stream_name>categoria</stream_name>
       </field>
       <field>
         <column_name>Cantidad vendida</column_name>
-        <stream_name>Cantidad vendida</stream_name>
+        <stream_name>cantidad_vendida</stream_name>
       </field>
       <field>
         <column_name>Precio total de venta</column_name>
-        <stream_name>Precio total de venta</stream_name>
+        <stream_name>precio_total_venta</stream_name>
       </field>
       <field>
         <column_name>fecha</column_name>
@@ -1002,23 +892,19 @@
       </field>
       <field>
         <column_name>Código/ID</column_name>
-        <stream_name>Código/ID</stream_name>
+        <stream_name>codigoid</stream_name>
       </field>
       <field>
         <column_name>Nombre</column_name>
-        <stream_name>Nombre</stream_name>
-      </field>
-      <field>
-        <column_name>Categoría_1</column_name>
-        <stream_name>Categoría_1</stream_name>
+        <stream_name>nombre</stream_name>
       </field>
       <field>
         <column_name>Cantidad disponible</column_name>
-        <stream_name>Cantidad disponible</stream_name>
+        <stream_name>cantidad_disponible</stream_name>
       </field>
       <field>
         <column_name>Precio unitario</column_name>
-        <stream_name>Precio unitario</stream_name>
+        <stream_name>precio_unitario</stream_name>
       </field>
       <field>
         <column_name>monto_total</column_name>
@@ -1033,10 +919,6 @@
         <stream_name>nombre_producto</stream_name>
       </field>
       <field>
-        <column_name>fecha_1</column_name>
-        <stream_name>fecha_1</stream_name>
-      </field>
-      <field>
         <column_name>dia</column_name>
         <stream_name>dia</stream_name>
       </field>
@@ -1046,7 +928,7 @@
       </field>
       <field>
         <column_name>año</column_name>
-        <stream_name>año</stream_name>
+        <stream_name>anio</stream_name>
       </field>
       <field>
         <column_name>id_fecha</column_name>
@@ -1062,8 +944,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>944</xloc>
-      <yloc>256</yloc>
+      <xloc>1312</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1082,8 +964,8 @@
     <calculation>
       <field_name>monto_total</field_name>
       <calc_type>MULTIPLY</calc_type>
-      <field_a>Cantidad vendida</field_a>
-      <field_b>Precio unitario</field_b>
+      <field_a>cantidad_vendida</field_a>
+      <field_b>precio_unitario</field_b>
       <field_c/>
       <value_type>None</value_type>
       <value_length>-1</value_length>
@@ -1103,7 +985,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
+      <xloc>640</xloc>
       <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1121,27 +1003,45 @@
     </partitioning>
     <fields>
       <field>
-        <name>Venta/ID</name>
+        <name>id_venta</name>
+        <rename/>
       </field>
       <field>
-        <name>Nombre (Producto)</name>
+        <name>nombre_producto</name>
+        <rename/>
       </field>
       <field>
-        <name>Categoría</name>
+        <name>categoria</name>
+        <rename/>
       </field>
       <field>
-        <name>Cantidad vendida</name>
+        <name>cantidad_vendida</name>
+        <rename/>
       </field>
       <field>
-        <name>Precio total de venta</name>
+        <name>precio_total_venta</name>
+        <rename/>
       </field>
       <field>
         <name>fecha</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dia</name>
+        <rename/>
+      </field>
+      <field>
+        <name>mes</name>
+        <rename/>
+      </field>
+      <field>
+        <name>anio</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>Venta/ID</name>
-        <rename>Venta/ID</rename>
+        <name>id_venta</name>
+        <rename>id_venta</rename>
         <type>None</type>
         <length>7</length>
         <precision>-2</precision>
@@ -1157,8 +1057,8 @@
         <storage_type/>
       </meta>
       <meta>
-        <name>Nombre (Producto)</name>
-        <rename>Nombre (Producto)</rename>
+        <name>nombre_producto</name>
+        <rename>nombre_producto</rename>
         <type>None</type>
         <length>26</length>
         <precision>-2</precision>
@@ -1174,8 +1074,8 @@
         <storage_type/>
       </meta>
       <meta>
-        <name>Categoría</name>
-        <rename>Categoría</rename>
+        <name>categoria</name>
+        <rename>categoria</rename>
         <type>None</type>
         <length>10</length>
         <precision>-2</precision>
@@ -1191,8 +1091,8 @@
         <storage_type/>
       </meta>
       <meta>
-        <name>Cantidad vendida</name>
-        <rename>Cantidad vendida</rename>
+        <name>cantidad_vendida</name>
+        <rename>cantidad_vendida</rename>
         <type>None</type>
         <length>15</length>
         <precision>0</precision>
@@ -1208,8 +1108,8 @@
         <storage_type/>
       </meta>
       <meta>
-        <name>Precio total de venta</name>
-        <rename>Precio total de venta</rename>
+        <name>precio_total_venta</name>
+        <rename>precio_total_venta</rename>
         <type>Integer</type>
         <length>15</length>
         <precision>0</precision>
@@ -1241,6 +1141,40 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
+      <meta>
+        <name>dia</name>
+        <rename>dia</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>mes</name>
+        <rename>mes</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1252,7 +1186,7 @@
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>176</yloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1268,13 +1202,17 @@
       <schema_name/>
     </partitioning>
     <join_type>INNER</join_type>
-    <step1>ventas_x_producto</step1>
-    <step2>dim_fecha_input</step2>
+    <step1>Sort rows 3</step1>
+    <step2>Sort rows 4</step2>
     <keys_1>
-      <key>fecha</key>
+      <key>anio</key>
+      <key>mes</key>
+      <key>dia</key>
     </keys_1>
     <keys_2>
-      <key>fecha</key>
+      <key>año</key>
+      <key>mes</key>
+      <key>dia</key>
     </keys_2>
     <attributes/>
     <cluster_schema/>
@@ -1285,8 +1223,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
-      <yloc>256</yloc>
+      <xloc>1120</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1302,10 +1240,10 @@
       <schema_name/>
     </partitioning>
     <join_type>INNER</join_type>
-    <step1>total_ventas</step1>
-    <step2>dim_producto_input</step2>
+    <step1>sort_ventas</step1>
+    <step2>Sort codigoid</step2>
     <keys_1>
-      <key>Código/ID</key>
+      <key>codigoid</key>
     </keys_1>
     <keys_2>
       <key>id_producto</key>
@@ -1319,24 +1257,693 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
+      <xloc>848</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
+  <step>
+    <name>inventario</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>local</connection>
+    <sql>select * from inacap_2.inventario</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>codigoid</name>
+        <length>16</length>
+        <precision>0</precision>
+        <origin>inventario</origin>
+        <comments>codigoid</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>nombre</name>
+        <length>100</length>
+        <precision>-1</precision>
+        <origin>inventario</origin>
+        <comments>nombre</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>categoria</name>
+        <length>50</length>
+        <precision>-1</precision>
+        <origin>inventario</origin>
+        <comments>categoria</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>cantidad_disponible</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>inventario</origin>
+        <comments>cantidad_disponible</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
+        <name>precio_unitario</name>
+        <length>12</length>
+        <precision>2</precision>
+        <origin>inventario</origin>
+        <comments>precio_unitario</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ventas</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>local</connection>
+    <sql>SELECT
+    *,
+    DAY(fecha) AS dia,
+    MONTH(fecha) AS mes,
+      CAST(YEAR(fecha) AS CHAR) AS anio
+FROM inacap_2.ventas;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>id_venta</name>
+        <length>16</length>
+        <precision>0</precision>
+        <origin>ventas</origin>
+        <comments>id_venta</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>nombre_producto</name>
+        <length>100</length>
+        <precision>-1</precision>
+        <origin>ventas</origin>
+        <comments>nombre_producto</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>categoria</name>
+        <length>50</length>
+        <precision>-1</precision>
+        <origin>ventas</origin>
+        <comments>categoria</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>cantidad_vendida</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>ventas</origin>
+        <comments>cantidad_vendida</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Number</type>
+        <storagetype>normal</storagetype>
+        <name>precio_total_venta</name>
+        <length>12</length>
+        <precision>2</precision>
+        <origin>ventas</origin>
+        <comments>precio_total_venta</comments>
+        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>fecha</name>
+        <length>0</length>
+        <precision>-1</precision>
+        <origin>ventas</origin>
+        <comments>fecha</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>dia</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>ventas</origin>
+        <comments>dia</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>mes</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>ventas</origin>
+        <comments>mes</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>anio</name>
+        <length>4</length>
+        <precision>-1</precision>
+        <origin>ventas</origin>
+        <comments>anio</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_419</date_format_locale>
+        <date_format_timezone>America/Santiago</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>nombre</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>240</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows 2</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>nombre_producto</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows 3</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>anio</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>mes</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>dia</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>944</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort rows 4</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>año</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>mes</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>dia</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>960</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sort_ventas</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>codigoid</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>736</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort codigoid</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>id_producto</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>736</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step_error_handling>
-    <error>
-      <source_step>Ventas</source_step>
-      <target_step>Inventario</target_step>
-      <is_enabled>Y</is_enabled>
-      <nr_valuename/>
-      <descriptions_valuename/>
-      <fields_valuename/>
-      <codes_valuename/>
-      <max_errors/>
-      <max_pct_errors/>
-      <min_pct_rows/>
-    </error>
   </step_error_handling>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>

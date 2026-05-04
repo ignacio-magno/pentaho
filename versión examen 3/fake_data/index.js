@@ -10,6 +10,7 @@ const DEFAULTS = {
 	DB_NAME: "inacap_2",
 	ITEM_COUNT: 120,
 	SEED_TARGET: "ventas", // "inventario" | "ventas"
+    FROM_DATE: "2023-01-01",
 };
 
 function parsePositiveInt(value, fallback) {
@@ -29,6 +30,7 @@ function getConfig() {
 		database: process.env.DB_NAME || DEFAULTS.DB_NAME,
 		itemCount: parsePositiveInt(process.env.ITEM_COUNT, DEFAULTS.ITEM_COUNT),
 		seedTarget: (process.env.SEED_TARGET || DEFAULTS.SEED_TARGET).toLowerCase(),
+        fromDate: process.env.FROM_DATE || DEFAULTS.FROM_DATE,
 	};
 }
 
@@ -80,7 +82,7 @@ function buildVentasRows(itemCount, productos) {
 		const producto = faker.helpers.arrayElement(productos);
 		const cantidad = faker.number.int({ min: 1, max: 10 });
 		const precioTotal = Number((cantidad * producto.precio_unitario).toFixed(2));
-		const fecha = faker.date.between({ from: "2023-01-01", to: new Date() });
+		const fecha = faker.date.between({ from: config.fromDate, to: new Date() });
 		rows.push([
 			producto.nombre,
 			producto.categoria,
